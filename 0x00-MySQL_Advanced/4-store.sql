@@ -6,6 +6,7 @@ DROP TRIGGER IF EXISTS DECREASE;
 CREATE TRIGGER DECREASE
 AFTER INSERT
 ON orders
+FOR each ROW
 BEGIN
     UPDATE items
     set quantity = quantity - NEW.number
