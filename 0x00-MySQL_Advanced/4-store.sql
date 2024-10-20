@@ -1,11 +1,14 @@
--- Writing a trigger
-DROP TRIGGER IF EXISTS DECRESING_TRIGGER;
+-- where are you my world
+-- creates a trigger that decreases the
+-- quantity of an item after adding a new order.
 DELIMITER $$
-CREATE TRIGGER DECRESING_TRIGGER AFTER INSERT ON orders
-FOR EACH ROW
+DROP TRIGGER IF EXISTS DECREASE;
+CREATE TRIGGER DECREASE
+AFTER INSERT
+ON orders
 BEGIN
     UPDATE items
-    SET quantity = quantity - NEW.number
-    WHERE name = NEW.item_name;
+    set quantity = quantity - NEW.number
+    WHERE name=NEW.item_name;
 END $$
 DELIMITER ;
