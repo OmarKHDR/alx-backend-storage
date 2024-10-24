@@ -17,7 +17,7 @@ def get_page(url: str) -> str:
     cached_html = redis_client.get(url)
 
     if cached_html:
-        print(f"{Returning cached content for {url}")
+        print(f"Returning cached content for {url}")
         return cached_html.decode('utf-8')
 
     response = requests.get(url)
