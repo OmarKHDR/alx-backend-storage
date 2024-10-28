@@ -7,5 +7,4 @@ import pymongo
 def list_all(mongo_collection):
     '''This is docs sumarry list_all
     '''
-    for i in mongo_collection.find():
-        print(i)
+    return mongo_collection.find()
