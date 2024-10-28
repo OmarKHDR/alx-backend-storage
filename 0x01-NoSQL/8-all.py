@@ -1,4 +1,4 @@
-#!/usr/bin/env pyhthon3
+#!/usr/bin/env python3
 '''This is the summary line
 '''
 import pymongo
