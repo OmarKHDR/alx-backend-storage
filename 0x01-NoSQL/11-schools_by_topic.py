@@ -8,4 +8,3 @@ def schools_by_topic(mongo_collection, topic):
     '''Hello pls pls pls
     '''
     return mongo_collection.find({'topics':{'$all':[topic]}})
-
