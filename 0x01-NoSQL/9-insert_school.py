@@ -1,4 +1,4 @@
-#1/usr/bin/env python3
+#!/usr/bin/env python3
 '''This docs is fucked up
 '''
 import pymongo
