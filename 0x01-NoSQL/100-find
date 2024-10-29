@@ -1,2 +1,2 @@
-#hy my world
+// hy my world
 db.school.find({'name':{"$regex":'Holberton*'}})
