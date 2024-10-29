@@ -23,5 +23,12 @@ def top_students(mongo_collection):
             '$sort': {
                 'averageScore': -1
             }
+        },
+        {
+            '$project': {
+                '_id': 0,
+                'name': "$_id",
+                'averageScore': 1
+            }
         }
     ])
