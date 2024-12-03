@@ -26,10 +26,8 @@ class Cache():
         """
         if fn is not None and isinstance(id, str):
             data = self._redis.get(id)
-            try:
-                return fn(data)
-            except Exception:
-                return None
+        if data is None:
+            return None
         return self._redis.get(id)
 
     def get_str(self, id: str) -> Union[str, bytes, int, float]:
