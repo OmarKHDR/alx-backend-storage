@@ -8,12 +8,26 @@ from functools import wraps
 
 
 def count_calls(method: callable) -> callable:
+    """DocDoc Doc Doc
+    """
     @wraps(method)
     def wrapped(self, *args, **kwargs) -> callable:
         self._redis.incr(method.__qualname__)
         return method(self, *args, **kwargs)
     return wrapped
 
+def call_history(method):
+    """DocDoc Doc Doc
+    """
+    @wraps(method)
+    def wrapper(self, *argv, **kwargs):
+        retValue = method(self, *argv, **kwargs)
+        inputL = f"{method.__qualname__}:inputs"
+        outputL = f"{method.__qualname__}:outputs"
+        self._redis.rpush(inputL, str(argv))
+        self._redis.rpush(outputL, retValue)
+        return retValue
+    return wrapper
 
 class Cache():
     def __init__(self) -> None:
@@ -22,6 +36,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @call_history
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """ THis is a docDocDoc
