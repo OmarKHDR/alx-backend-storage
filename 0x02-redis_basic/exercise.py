@@ -7,9 +7,9 @@ from typing import Union, Optional
 from functools import wraps
 
 
-def count_calls(method):
+def count_calls(method: callable) -> callable:
     @wraps(method)
-    def wrapped(self, *args, **kwargs):
+    def wrapped(self, *args, **kwargs) -> callable:
         self._redis.incr(method.__qualname__)
         return method(self, *args, **kwargs)
     return wrapped
