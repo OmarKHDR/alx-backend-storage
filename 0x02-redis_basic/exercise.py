@@ -39,4 +39,4 @@ class Cache():
     def get_int(self, id: str) -> Union[str, bytes, int, float]:
         """THis DocDocDOc dic
         """
-        return self.get(id, lambda x: int(x.decode('utf-8')))
+        return self.get(id, lambda x: int(x))
