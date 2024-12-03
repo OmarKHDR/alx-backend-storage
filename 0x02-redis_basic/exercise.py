@@ -16,7 +16,7 @@ def count_calls(method: callable) -> callable:
         return method(self, *args, **kwargs)
     return wrapped
 
-def call_history(method):
+def call_history(method: callable) -> callable:
     """DocDoc Doc Doc
     """
     @wraps(method)
