@@ -12,6 +12,8 @@ class Cache():
         self._redis.flushdb()
 
     def store(self, data: str | ByteString | float | int) -> str:
+        """ THis is a docDocDoc
+        """
         id = str(uuid.uuid4())
         self._redis.set(id, data)
         return id
