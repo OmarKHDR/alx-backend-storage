@@ -4,6 +4,15 @@
 import uuid
 import redis
 from typing import Union, Optional
+from functools import wraps
+
+
+def count_calls(method):
+    @wraps(method)
+    def wrapped(self, *args, **kwargs):
+        self._redis.incr(method.__qualname__)
+        return method(self, *args, **kwargs)
+    return wrapped
 
 
 class Cache():
@@ -13,6 +22,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """ THis is a docDocDoc
         """
@@ -21,7 +31,7 @@ class Cache():
         return id
 
     def get(self, id: str,
-            fn: Optional[callable]) -> Union[str, bytes, int, float]:
+            fn: Optional[callable] = None) -> Union[str, bytes, int, float]:
         """This sisissisis
         """
         data = self._redis.get(id)
