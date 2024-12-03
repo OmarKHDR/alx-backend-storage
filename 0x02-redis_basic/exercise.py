@@ -3,7 +3,7 @@
 """
 import uuid
 import redis
-from typing import ByteString
+from typing import Union, ByteString
 
 
 class Cache():
@@ -11,7 +11,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: str | ByteString | float | int) -> str:
+    def store(self, data: Union[str, ByteString, float, int]) -> str:
         """ THis is a docDocDoc
         """
         id = str(uuid.uuid4())
