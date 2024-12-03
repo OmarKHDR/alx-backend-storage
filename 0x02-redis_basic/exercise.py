@@ -13,7 +13,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: Union[str, bytes, float, int]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """ THis is a docDocDoc
         """
         id = str(uuid.uuid4())
