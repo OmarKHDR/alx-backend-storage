@@ -24,11 +24,12 @@ class Cache():
             fn: Optional[callable]) -> Union[str, bytes, int, float]:
         """This sisissisis
         """
-        if fn is not None and isinstance(id, str):
-            data = self._redis.get(id)
+        data = self._redis.get(id)
         if data is None:
             return None
-        return self._redis.get(id)
+        if fn is not None:
+            return fn(data)
+        return data
 
     def get_str(self, id: str) -> Union[str, bytes, int, float]:
         """THis DocDocDOc dic
